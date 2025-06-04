@@ -4,6 +4,7 @@
     "listenPort": ${port_tpl},
     "deploymentTime": "${deployed_at_tpl}",
     "notes": "Este es un archivo de configuración autogenerado. ${message_tpl}",
+    "connectionString": "${connection_string_tpl}", %{ endif ~}
     "settings": {
         "featureA": true,
         "featureB": false,
