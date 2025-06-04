@@ -14,6 +14,19 @@ def perform_complex_validations(config_data, file_path):
     elif not (1024 < config_data.get("listenPort", 0) < 65535):
         warnings.append(f"[{file_path}] 'listenPort' {config_data.get('listenPort')} está fuera del rango común.")
 
+    # Verificar connection_string para database_connector
+    app_name = config_data.get("applicationName", "")
+    if app_name == "database_connector":
+        connection_string = config_data.get("connectionString")
+        if not connection_string:
+            errors.append(f"[{file_path}] 'connectionString' es requerido para {app_name}.")
+        elif not isinstance(connection_string, str):
+            errors.append(f"[{file_path}] 'connectionString' debe ser un string para {app_name}.")
+        elif len(connection_string.strip()) < 10:
+            warnings.append(f"[{file_path}] 'connectionString' parece ser muy corto para {app_name}.")
+        elif not any(protocol in connection_string.lower() for protocol in ["postgresql://", "mysql://", "mongodb://", "sqlite:///"]):
+            warnings.append(f"[{file_path}] 'connectionString' no contiene un protocolo de base de datos reconocido para {app_name}.")
+
     # Más validaciones simuladas
     for i in range(10):
         if f"setting_{i}" not in config_data.get("settings", {}):
