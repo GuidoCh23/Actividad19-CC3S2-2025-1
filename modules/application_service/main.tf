@@ -27,6 +27,8 @@ data "template_file" "app_config" {
     port_tpl        = var.app_port
     deployed_at_tpl = timestamp()
     message_tpl     = var.global_message_from_root
+    # Agregamos nueva variable
+    connection_string_tpl = var.connection_string_tpl
   }
 }
 
