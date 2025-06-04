@@ -24,6 +24,11 @@ if [ "$APP_NAME" = "database_connector" ]; then
     echo "Database lock created at $(date) for $APP_NAME" > "$DB_LOCK_FILE"
     echo "Archivo .db_lock creado en: $DB_LOCK_FILE" >> "$LOG_FILE"
     echo "Archivo .db_lock creado para $APP_NAME"
+    
+    # Simular verificaciones adicionales específicas de base de datos
+    echo "Verificando conexión a base de datos..." >> "$LOG_FILE"
+    echo "Inicializando pool de conexiones..." >> "$LOG_FILE"
+    echo "Configurando timeout de conexión..." >> "$LOG_FILE"
 fi
 
 

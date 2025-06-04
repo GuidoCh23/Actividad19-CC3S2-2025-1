@@ -7,7 +7,7 @@ LOG_FILE="$SERVICE_PATH/logs/${SERVICE_NAME}_health.log"
 PID_FILE="$SERVICE_PATH/${SERVICE_NAME}.pid" # Nombre del servicio sin _vX.Y.Z
 
 # Intentar extraer nombre base del servicio (app1 de app1_v1.0.2)
-BASE_SERVICE_NAME=$(echo "$SERVICE_NAME" | cut -d'_' -f1)
+BASE_SERVICE_NAME=$(echo "$SERVICE_NAME" | sed 's/_v[0-9]\+\.[0-9]\+\.[0-9]\+$//')
 PID_FILE_ACTUAL="$SERVICE_PATH/${BASE_SERVICE_NAME}.pid"
 
 echo "Comprobación iniciada a $(date)" > "$LOG_FILE"
