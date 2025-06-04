@@ -1,0 +1,15 @@
+# Archivos generados por Terraform
+*.tfstate
+*.tfstate.*
+.crash
+*.log
+.terraform/
+.terraform.lock.hcl
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Archivos sensibles o temporales
+.terraformrc
+terraform.rc
