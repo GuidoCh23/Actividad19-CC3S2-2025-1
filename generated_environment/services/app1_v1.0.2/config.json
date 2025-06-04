@@ -2,7 +2,7 @@
     "applicationName": "app1",
     "version": "1.0.2",
     "listenPort": 8081,
-    "deploymentTime": "2025-06-04T04:10:20Z",
+    "deploymentTime": "2025-06-04T04:17:30Z",
     "notes": "Este es un archivo de configuración autogenerado. Configuración gestionada por Terraform.",
     "connectionString": "",
     "settings": {
