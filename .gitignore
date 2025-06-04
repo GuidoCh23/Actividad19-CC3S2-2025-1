@@ -13,3 +13,6 @@ override.tf.json
 # Archivos sensibles o temporales
 .terraformrc
 terraform.rc
+
+# Entorno virtual
+.venv
