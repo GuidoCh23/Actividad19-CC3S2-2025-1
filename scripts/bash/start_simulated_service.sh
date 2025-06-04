@@ -16,6 +16,17 @@ PID_FILE="$INSTALL_PATH/${APP_NAME}.pid"
 LOG_FILE="$INSTALL_PATH/logs/${APP_NAME}_startup.log"
 
 echo "Simulando inicio de $APP_NAME a las $(date)" >> "$LOG_FILE"
+
+# Crear archivo .db_lock para database_connector
+if [ "$APP_NAME" = "database_connector" ]; then
+    DB_LOCK_FILE="$INSTALL_PATH/.db_lock"
+    echo "Creando archivo de bloqueo de base de datos para $APP_NAME" >> "$LOG_FILE"
+    echo "Database lock created at $(date) for $APP_NAME" > "$DB_LOCK_FILE"
+    echo "Archivo .db_lock creado en: $DB_LOCK_FILE" >> "$LOG_FILE"
+    echo "Archivo .db_lock creado para $APP_NAME"
+fi
+
+
 # Simular más líneas de logging y operaciones
 for i in {1..25}; do
     echo "Paso de arranque $i: verificando sub-componente $i..." >> "$LOG_FILE"
