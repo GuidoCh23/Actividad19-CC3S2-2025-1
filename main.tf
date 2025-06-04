@@ -1,3 +1,6 @@
+data "external" "global_metadata" {
+  program = [var.python_executable, "${path.cwd}/scripts/python/generate_global_metadata.py"]
+}
 resource "local_file" "bienvenida" {
   content  = "Bienvenido al proyecto IaC local! Hora: ${timestamp()}"
   filename = "${path.cwd}/generated_environment/bienvenida.txt"
@@ -42,6 +45,7 @@ module "simulated_apps" {
   base_install_path        = "${path.cwd}/generated_environment/services"
   global_message_from_root = var.mensaje_global # Pasar la variable sensible
   python_exe               = var.python_executable
+  deployment_id            = data.external.global_metadata.result["deployment_id"]
 
   # Añadir connection_string solo para database_connector
   connection_string_tpl = each.key == "database_connector" ? "postgresql://user:password@localhost:5432/mydb" : ""

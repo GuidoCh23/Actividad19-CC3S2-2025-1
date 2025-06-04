@@ -29,8 +29,10 @@ data "template_file" "app_config" {
     message_tpl     = var.global_message_from_root
     # Agregamos nueva variable
     connection_string_tpl = var.connection_string_tpl
+    deployment_id_tpl = var.deployment_id
   }
 }
+
 
 resource "local_file" "config_json" {
   content    = data.template_file.app_config.rendered
@@ -42,8 +44,10 @@ resource "local_file" "config_json" {
 data "external" "app_metadata_py" {
   program = [var.python_exe, "${path.root}/scripts/python/generate_app_metadata.py"]
   query = {
-    app_name   = var.app_name
-    version    = var.app_version
+    app_name      = var.app_name
+    version       = var.app_version
+    app_port      = var.app_port
+    deployment_id = var.deployment_id
     input_data = "datos_adicionales_para_python"
     # Más de 20 líneas de query simuladas
     q1  = "v1", q2 = "v2", q3 = "v3", q4 = "v4", q5 = "v5"
