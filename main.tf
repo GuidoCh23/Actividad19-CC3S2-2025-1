@@ -42,7 +42,10 @@ module "simulated_apps" {
   base_install_path        = "${path.cwd}/generated_environment/services"
   global_message_from_root = var.mensaje_global # Pasar la variable sensible
   python_exe               = var.python_executable
-}
+
+  # Añadir connection_string solo para database_connector
+  connection_string_tpl = each.key == "database_connector" ? "postgresql://user:password@localhost:5432/mydb" : ""
+  }
 
 output "detalles_apps_simuladas" {
   value = {
